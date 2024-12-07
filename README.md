@@ -21,8 +21,9 @@ This project is a simple CRD (Create, Read, Delete) application using `json-serv
    ```
 
 2. **Install Dependencies**
+   - Run the following command to install `json-server` and other dependencies:
    ```bash
-   npm install
+   npm install json-server
    ```
 
 3. **Start the JSON Server**
