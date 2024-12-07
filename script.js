@@ -65,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('entity-form');
   form.addEventListener('submit', createEntity);
 
+  // Event listener for fetching entities
+  const fetchButton = document.getElementById('fetch-entities');
+  fetchButton.addEventListener('click', fetchEntities);
+
   // Initial fetch of entities
   fetchEntities();
 });

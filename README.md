@@ -38,3 +38,34 @@ This project is a simple CRD (Create, Read, Delete) application using `json-serv
 - Fill out the form to add a new entity.
 - View the list of entities displayed below the form.
 - Click the "Delete" button next to an entity to remove it.
+
+## Testing the API Endpoints
+
+You can test the API endpoints using a tool like Postman or by using curl commands in the terminal. Here are the steps to test each endpoint:
+
+### Get All Entities
+- **Endpoint:** `GET http://localhost:3000/entities`
+- **Description:** Retrieves a list of all entities.
+- **Test with curl:**
+  ```bash
+  curl http://localhost:3000/entities
+  ```
+
+### Create a New Entity
+- **Endpoint:** `POST http://localhost:3000/entities`
+- **Description:** Adds a new entity to the list.
+- **Test with curl:**
+  ```bash
+  curl -X POST http://localhost:3000/entities -H "Content-Type: application/json" -d '{"name": "New Entity"}'
+  ```
+
+### Delete an Entity
+- **Endpoint:** `DELETE http://localhost:3000/entities/:id`
+- **Description:** Deletes an entity by its ID.
+- **Test with curl:**
+  ```bash
+  curl -X DELETE http://localhost:3000/entities/1
+  ```
+  Replace `1` with the ID of the entity you want to delete.
+
+These commands assume `json-server` is running on `http://localhost:3000`. Make sure to replace placeholder values with actual data when testing.
