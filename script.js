@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const apiUrl = 'http://localhost:3000/entities'; // Adjust the URL if necessary
+  const apiUrl = 'http://localhost:3000/entities'; 
 
   // Function to fetch and display entities
   async function fetchEntities() {
@@ -17,14 +17,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const entityList = document.getElementById('entity-list');
     entityList.innerHTML = ''; // Clear existing entities
 
+    const table = document.createElement('table');
+    table.className = 'table table-striped';
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    entityList.appendChild(table);
+
+    const tr = document.createElement('tr');
+    thead.appendChild(tr);
+    const thId = document.createElement('th');
+    thId.textContent = 'ID';
+    const thName = document.createElement('th');
+    thName.textContent = 'Name';
+    const thActions = document.createElement('th');
+    thActions.textContent = 'Actions';
+    tr.appendChild(thId);
+    tr.appendChild(thName);
+    tr.appendChild(thActions);
+
     entities.forEach(entity => {
-      const entityItem = document.createElement('div');
-      entityItem.className = 'entity-item';
-      entityItem.innerHTML = `
-        <p>${entity.name}</p>
-        <button onclick="deleteEntity(${entity.id})">Delete</button>
+      const entityRow = document.createElement('tr');
+      entityRow.innerHTML = `
+        <td>${entity.id}</td>
+        <td>${entity.name}</td>
+        <td><button class="btn btn-danger" onclick="deleteEntity(${entity.id})">Delete</button></td>
       `;
-      entityList.appendChild(entityItem);
+      tbody.appendChild(entityRow);
     });
   }
 
