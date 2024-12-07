@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entityRow.innerHTML = `
         <td>${entity.id}</td>
         <td>${entity.name}</td>
-        <td><button class="btn btn-danger" onclick="deleteEntity(${entity.id})">Delete</button></td>
+        <td><button class="btn btn-danger" onclick="window.deleteEntity(${entity.id})">Delete</button></td>
       `;
       tbody.appendChild(entityRow);
     });
@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Function to delete an entity
-  async function deleteEntity(id) {
+  // Define deleteEntity globally
+  window.deleteEntity = async function(id) {
     try {
       await fetch(`${apiUrl}/${id}`, {
         method: 'DELETE'
