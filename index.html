@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>CRD Application</title>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">CRD Application</h1>
+    <form id="entity-form" class="mb-4">
+      <div class="form-group">
+        <label for="entity-name">Entity Name</label>
+        <input type="text" class="form-control" id="entity-name" placeholder="Enter name" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Entity</button>
+    </form>
+    <div id="entity-list" class="list-group">
+      <!-- Entities will be displayed here -->
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
