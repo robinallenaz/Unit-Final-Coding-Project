@@ -12,6 +12,14 @@ This project is a simple CRD (Create, Read, Delete) application using `json-serv
 - **Bootstrap**: Used for styling and responsive design.
 - **JavaScript**: Handles API interactions using `fetch` and `async/await`.
 
+## Code Structure
+
+The codebase has been modularized into the following files for better organization and maintainability:
+
+- **api.js**: Handles all API interactions, including fetching, creating, and deleting entities.
+- **dom.js**: Manages DOM manipulations, specifically for displaying entities in a table.
+- **events.js**: Sets up event listeners for form submissions and button clicks.
+
 ## Setup Instructions
 
 1. **Clone the Repository**
@@ -23,7 +31,7 @@ This project is a simple CRD (Create, Read, Delete) application using `json-serv
 2. **Install Dependencies**
    - Run the following command to install `json-server` and other dependencies:
    ```bash
-   npm install json-server
+   npm install
    ```
 
 3. **Start the JSON Server**
@@ -34,6 +42,8 @@ This project is a simple CRD (Create, Read, Delete) application using `json-serv
 
 4. **Open the Application**
    - Open `index.html` in a web browser to interact with the application.
+
+Ensure that you have a modern browser to support ES6 modules used in the code.
 
 ## Usage
 - Fill out the form to add a new entity.
