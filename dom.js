@@ -1,7 +1,10 @@
+// Function to display entities in a table format
 export function displayEntities(entities) {
+  // Get the entity list container
   const entityList = document.getElementById('entity-list');
   entityList.innerHTML = ''; // Clear existing entities
 
+  // Create a table element
   const table = document.createElement('table');
   table.className = 'table table-striped';
   const thead = document.createElement('thead');
@@ -10,6 +13,7 @@ export function displayEntities(entities) {
   table.appendChild(tbody);
   entityList.appendChild(table);
 
+  // Create table headers
   const tr = document.createElement('tr');
   thead.appendChild(tr);
   const headers = ['ID', 'Name', 'Actions'];
@@ -19,6 +23,7 @@ export function displayEntities(entities) {
     tr.appendChild(th);
   });
 
+  // Use a Document Fragment for efficient DOM updates
   const fragment = document.createDocumentFragment();
   entities.forEach(entity => {
     const entityRow = document.createElement('tr');
@@ -29,5 +34,5 @@ export function displayEntities(entities) {
     `;
     fragment.appendChild(entityRow);
   });
-  tbody.appendChild(fragment);
+  tbody.appendChild(fragment); // Append all rows at once
 }
