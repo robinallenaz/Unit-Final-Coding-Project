@@ -7,6 +7,7 @@ export function displayEntities(entities) {
   // Create a table element
   const table = document.createElement('table');
   table.className = 'table table-striped';
+  table.setAttribute('role', 'table');
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
   table.appendChild(thead);
@@ -20,6 +21,7 @@ export function displayEntities(entities) {
   headers.forEach(headerText => {
     const th = document.createElement('th');
     th.textContent = headerText;
+    th.setAttribute('scope', 'col');
     tr.appendChild(th);
   });
 
@@ -30,7 +32,7 @@ export function displayEntities(entities) {
     entityRow.innerHTML = `
       <td>${entity.id}</td>
       <td>${entity.name}</td>
-      <td><button class="btn btn-danger delete-btn" data-id="${entity.id}">Delete</button></td>
+      <td><button class="btn btn-danger delete-btn" data-id="${entity.id}" aria-label="Delete entity ${entity.name}">Delete</button></td>
     `;
     fragment.appendChild(entityRow);
   });
