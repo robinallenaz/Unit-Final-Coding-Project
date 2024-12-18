@@ -1,5 +1,17 @@
 body.dark-mode {
     background-color: #121212;
+}
+
+body.dark-mode, body.dark-mode * {
+    color: #ffffff;
+}
+
+body.dark-mode th, body.dark-mode td {
+    color: #ffffff;
+}
+
+/* Ensure links are also styled correctly */
+body.dark-mode a {
     color: #ffffff;
 }
 
