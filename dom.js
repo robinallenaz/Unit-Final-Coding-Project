@@ -1,5 +1,8 @@
-// Function to display entities in a table format
-export function displayEntities(entities) {
+// Function to display entities with pagination
+export function displayEntities(entities, currentPage = 1, pageSize = 10) {
+  // Calculate total pages
+  const totalPages = Math.ceil(entities.length / pageSize);
+
   // Get the entity list container
   const entityList = document.getElementById('entity-list');
   entityList.innerHTML = ''; // Clear existing entities
@@ -27,7 +30,10 @@ export function displayEntities(entities) {
 
   // Use a Document Fragment for efficient DOM updates
   const fragment = document.createDocumentFragment();
-  entities.forEach(entity => {
+  const start = (currentPage - 1) * pageSize;
+  const end = start + pageSize;
+  const currentEntities = entities.slice(start, end);
+  currentEntities.forEach(entity => {
     const entityRow = document.createElement('tr');
     entityRow.innerHTML = `
       <td>${entity.id}</td>
@@ -37,4 +43,42 @@ export function displayEntities(entities) {
     fragment.appendChild(entityRow);
   });
   tbody.appendChild(fragment); // Append all rows at once
+
+  // Create pagination controls
+  const pagination = document.createElement('div');
+  pagination.className = 'pagination';
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement('button');
+    pageButton.textContent = i;
+    pageButton.className = 'page-btn';
+    pageButton.disabled = i === currentPage;
+    pageButton.addEventListener('click', () => {
+      displayEntities(entities, i, pageSize);
+    });
+    pagination.appendChild(pageButton);
+  }
+  entityList.appendChild(pagination);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Check for saved user preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+    }
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+
+        // Save user preference
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark-mode');
+        } else {
+            localStorage.setItem('theme', '');
+        }
+    });
+});

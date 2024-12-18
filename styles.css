@@ -1,0 +1,12 @@
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* Add more styles as needed */
