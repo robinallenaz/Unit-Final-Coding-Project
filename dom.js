@@ -62,23 +62,27 @@ export function displayEntities(entities, currentPage = 1, pageSize = 10) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.getElementById('dark-mode-toggle');
-    const body = document.body;
+  console.log('DOM fully loaded and parsed');
+  const toggleButton = document.getElementById('dark-mode-toggle');
+  const body = document.body;
 
-    // Check for saved user preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        body.classList.add(savedTheme);
+  // Check for saved user preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    body.classList.add(savedTheme);
+  }
+
+  toggleButton.addEventListener('click', () => {
+    console.log('Dark mode toggle button clicked');
+    body.classList.toggle('dark-mode');
+
+    // Save user preference
+    if (body.classList.contains('dark-mode')) {
+      console.log('Dark mode class added');
+      localStorage.setItem('theme', 'dark-mode');
+    } else {
+      console.log('Dark mode class removed');
+      localStorage.setItem('theme', '');
     }
-
-    toggleButton.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-
-        // Save user preference
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark-mode');
-        } else {
-            localStorage.setItem('theme', '');
-        }
-    });
+  });
 });
