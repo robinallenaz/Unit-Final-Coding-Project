@@ -61,18 +61,46 @@ export function displayEntities(entities, currentPage = 1, pageSize = 10) {
   entityList.appendChild(pagination);
 }
 
+let currentPage = 1;
+const usersPerPage = 5;
+let allUsers = [];
+
+function displayPage(page) {
+    const userList = document.getElementById('user-list');
+    userList.innerHTML = '';
+    const start = (page - 1) * usersPerPage;
+    const end = start + usersPerPage;
+    const usersToDisplay = allUsers.slice(start, end);
+    usersToDisplay.forEach(user => {
+        const userItem = document.createElement('li');
+        userItem.textContent = `${user.name.first} ${user.name.last} (${user.email})`;
+        userList.appendChild(userItem);
+    });
+    updatePaginationControls();
+}
+
+function updatePaginationControls() {
+    const paginationControls = document.getElementById('pagination-controls');
+    paginationControls.innerHTML = '';
+    const totalPages = Math.ceil(allUsers.length / usersPerPage);
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.disabled = i === currentPage;
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            displayPage(currentPage);
+        });
+        paginationControls.appendChild(pageButton);
+    }
+}
+
 async function fetchAndDisplayUsers() {
     try {
-        const response = await fetch('https://randomuser.me/api/?results=10');
+        const response = await fetch('https://randomuser.me/api/?results=50');
         const data = await response.json();
-        const users = data.results;
-        const userList = document.getElementById('user-list');
-        userList.innerHTML = '';
-        users.forEach(user => {
-            const userItem = document.createElement('li');
-            userItem.textContent = `${user.name.first} ${user.name.last} (${user.email})`;
-            userList.appendChild(userItem);
-        });
+        allUsers = data.results;
+        displayPage(currentPage);
     } catch (error) {
         console.error('Error fetching users:', error);
     }
