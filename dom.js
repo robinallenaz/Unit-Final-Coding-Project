@@ -102,5 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  fetchAndDisplayUsers();
+  const fetchButton = document.getElementById('fetch-entities');
+  fetchButton.addEventListener('click', fetchAndDisplayUsers);
 });
