@@ -61,6 +61,22 @@ export function displayEntities(entities, currentPage = 1, pageSize = 10) {
   entityList.appendChild(pagination);
 }
 
+async function fetchAndDisplayUsers() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const users = await response.json();
+    const userList = document.getElementById('user-list');
+    userList.innerHTML = '';
+    users.forEach(user => {
+      const userItem = document.createElement('li');
+      userItem.textContent = `${user.name} (${user.email})`;
+      userList.appendChild(userItem);
+    });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed');
   const toggleButton = document.getElementById('dark-mode-toggle');
@@ -85,4 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('theme', '');
     }
   });
+
+  fetchAndDisplayUsers();
 });
