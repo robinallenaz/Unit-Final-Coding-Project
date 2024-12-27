@@ -133,4 +133,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fetchButton = document.getElementById('fetch-entities');
   fetchButton.addEventListener('click', fetchAndDisplayUsers);
+
+  const form = document.getElementById('contactForm');
+
+  form.addEventListener('submit', function(event) {
+    // Prevent form submission
+    event.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    // Validate form fields
+    if (name === '') {
+      alert('Name is required.');
+      return;
+    }
+
+    if (email === '') {
+      alert('Email is required.');
+      return;
+    }
+
+    // Simple email format validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // If validation passes, submit the form or perform desired actions
+    alert('Form submitted successfully!');
+    // form.submit(); // Uncomment this line to allow form submission
+  });
 });
