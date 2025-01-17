@@ -8,49 +8,56 @@
   <title>CRD Application</title>
 </head>
 <body>
-  <button id="dark-mode-toggle">Toggle Dark Mode</button>
-  <div class="container mt-5">
-    <h1 class="text-center">CRD Application</h1>
-    <form id="entity-form" class="mb-4">
-      <div class="form-group">
-        <label for="entity-name">Entity Name</label>
-        <input type="text" class="form-control" id="entity-name" placeholder="Enter name" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Add Entity</button>
-    </form>
-    <!-- Button to fetch entities -->
-    <button id="fetch-entities" class="btn btn-info mb-3">Fetch Entities</button>
+  <header>
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
+  </header>
+  <main>
+    <div class="container mt-5">
+      <h1 class="text-center">CRD Application</h1>
+      <form id="entity-form" class="mb-4">
+        <div class="form-group">
+          <label for="entity-name">Entity Name</label>
+          <input type="text" class="form-control" id="entity-name" placeholder="Enter name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Entity</button>
+      </form>
+      <!-- Button to fetch entities -->
+      <button id="fetch-entities" class="btn btn-info mb-3">Fetch Entities</button>
 
-    <!-- Table to display entities -->
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="entity-list">
+      <!-- Table to display entities -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="entity-list">
+          <!-- Entities will be displayed here -->
+        </tbody>
+      </table>
+      <div id="entity-list" class="list-group">
         <!-- Entities will be displayed here -->
-      </tbody>
-    </table>
-    <div id="entity-list" class="list-group">
-      <!-- Entities will be displayed here -->
+      </div>
+      <h2>User List</h2>
+      <p>Click the "Fetch Entities" button to load the user list.</p>
+      <ul id="user-list"></ul>
+      <div id="pagination-controls"></div>
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <input type="submit" value="Submit">
+      </form>
     </div>
-    <h2>User List</h2>
-    <p>Click the "Fetch Entities" button to load the user list.</p>
-    <ul id="user-list"></ul>
-    <div id="pagination-controls"></div>
-    <form id="contactForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      <br>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
+  </main>
+  <footer>
+    <!-- Footer content here -->
+  </footer>
   <script src="script.js"></script>
   <script src="dom.js" type="module"></script>
 </body>
