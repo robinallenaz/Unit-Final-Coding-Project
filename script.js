@@ -81,6 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Function to show the loading spinner
+  function showSpinner() {
+    document.getElementById('loading-spinner').style.display = 'block';
+  }
+
+  // Function to hide the loading spinner
+  function hideSpinner() {
+    document.getElementById('loading-spinner').style.display = 'none';
+  }
+
+  // Example usage: show the spinner for 3 seconds
+  showSpinner();
+  setTimeout(hideSpinner, 3000);
+
   // Event listener for form submission
   const form = document.getElementById('entity-form');
   form.addEventListener('submit', createEntity);
