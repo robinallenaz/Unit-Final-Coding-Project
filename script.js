@@ -130,4 +130,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial fetch of entities
   fetchEntities();
+
+  // Show or hide the 'Back to Top' button based on scroll position
+  window.addEventListener('scroll', function() {
+    const backToTopButton = document.getElementById('back-to-top');
+    if (window.scrollY > 300) {
+        backToTopButton.style.display = 'block';
+    } else {
+        backToTopButton.style.display = 'none';
+    }
+  });
+
+  // Scroll to top when the 'Back to Top' button is clicked
+  const backToTopButton = document.getElementById('back-to-top');
+  backToTopButton.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+  });
 });

@@ -69,6 +69,24 @@ button:hover {
     100% { transform: rotate(360deg); }
 }
 
+/* Back to Top Button Styles */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#back-to-top:hover {
+    background-color: #2980b9;
+}
+
 /* Responsive styles for small screens */
 @media (max-width: 600px) {
     body {
