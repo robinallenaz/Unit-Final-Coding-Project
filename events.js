@@ -1,19 +1,13 @@
-// This file handles event-related functionalities for entity management.
+// Handles event listeners for entity actions.
 
 import { fetchEntities, createEntity, deleteEntity } from './api.js';
 import { displayEntities } from './dom.js';
 
-/**
- * Initializes event listeners for entity creation and deletion.
- */
 export function initializeEventListeners() {
   // Get the form element for creating new entities
   const form = document.getElementById('entity-form');
 
-  /**
-   * Event listener for form submission.
-   * Prevents default form submission and creates a new entity.
-   */
+  // Add entity on form submit
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -47,10 +41,7 @@ export function initializeEventListeners() {
     }
   });
 
-  /**
-   * Event listener for delete button clicks.
-   * Deletes an entity with the given ID.
-   */
+  // Delete entity on button click
   document.addEventListener('click', async (event) => {
     // Check if the clicked element is a delete button
     if (event.target.classList.contains('delete-btn')) {
@@ -73,7 +64,6 @@ export function initializeEventListeners() {
     }
   });
 
-  // Initial fetch of entities
-  // Fetch the list of entities and display them
+  // Initial load of entities
   fetchEntities().then(displayEntities).catch(error => alert(error.message));
 }
