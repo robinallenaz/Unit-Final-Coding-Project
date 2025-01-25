@@ -1,20 +1,12 @@
-// This file manages DOM manipulations and interactions.
+// Manages DOM manipulations.
 
 // Function to display entities with pagination
-// This function displays a list of entities with pagination controls.
-// It takes in an array of entities, the current page number, and the page size.
 export function displayEntities(entities, currentPage = 1, pageSize = 10) {
-  // Calculate total pages
   const totalPages = Math.ceil(entities.length / pageSize);
-
-  // Get the entity list container
   const entityList = document.getElementById('entity-list');
-  entityList.innerHTML = ''; // Clear existing entities
-
-  // Create a table element
+  entityList.innerHTML = '';
   const table = document.createElement('table');
   table.className = 'table table-striped';
-  table.setAttribute('role', 'table');
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
   table.appendChild(thead);
@@ -24,16 +16,17 @@ export function displayEntities(entities, currentPage = 1, pageSize = 10) {
   // Create table headers
   const tr = document.createElement('tr');
   thead.appendChild(tr);
-  const headers = ['ID', 'Name', 'Actions'];
-  headers.forEach(headerText => {
-    const th = document.createElement('th');
-    th.textContent = headerText;
-    th.setAttribute('scope', 'col');
-    tr.appendChild(th);
-  });
+  const thId = document.createElement('th');
+  thId.textContent = 'ID';
+  const thName = document.createElement('th');
+  thName.textContent = 'Name';
+  const thActions = document.createElement('th');
+  thActions.textContent = 'Actions';
+  tr.appendChild(thId);
+  tr.appendChild(thName);
+  tr.appendChild(thActions);
 
-  // Use a Document Fragment for efficient DOM updates
-  const fragment = document.createDocumentFragment();
+  // Display entities
   const start = (currentPage - 1) * pageSize;
   const end = start + pageSize;
   const currentEntities = entities.slice(start, end);
@@ -44,14 +37,12 @@ export function displayEntities(entities, currentPage = 1, pageSize = 10) {
       <td>${entity.name}</td>
       <td><button class="btn btn-danger delete-btn" data-id="${entity.id}" aria-label="Delete entity ${entity.name}">Delete</button></td>
     `;
-    fragment.appendChild(entityRow);
+    tbody.appendChild(entityRow);
   });
-  tbody.appendChild(fragment); // Append all rows at once
 
-  // Create pagination controls
+  // Pagination
   const pagination = document.createElement('div');
   pagination.className = 'pagination';
-
   for (let i = 1; i <= totalPages; i++) {
     const pageButton = document.createElement('button');
     pageButton.textContent = i;
@@ -66,19 +57,16 @@ export function displayEntities(entities, currentPage = 1, pageSize = 10) {
 }
 
 // Function to create a new DOM element
-// This function creates a new element of the specified type and returns it.
 function createElement(type) {
     return document.createElement(type);
 }
 
 // Function to append a child element to a parent
-// This function appends the given child element to the specified parent element.
 function appendChild(parent, child) {
     parent.appendChild(child);
 }
 
 // Function to set text content of an element
-// This function sets the text content of the specified element to the given text.
 function setTextContent(element, text) {
     element.textContent = text;
 }
@@ -93,7 +81,6 @@ const usersPerPage = 5;
 let allUsers = [];
 
 // Function to display a page of users
-// This function displays a list of users for the specified page.
 function displayPage(page) {
     const userList = document.getElementById('user-list');
     userList.innerHTML = '';
@@ -109,7 +96,6 @@ function displayPage(page) {
 }
 
 // Function to update pagination controls
-// This function updates the pagination controls to reflect the current page and total pages.
 function updatePaginationControls() {
     const paginationControls = document.getElementById('pagination-controls');
     paginationControls.innerHTML = '';
@@ -127,7 +113,6 @@ function updatePaginationControls() {
 }
 
 // Function to fetch and display users
-// This function fetches a list of users from the API and displays the first page.
 async function fetchAndDisplayUsers() {
     try {
         const response = await fetch('https://randomuser.me/api/?results=50');
@@ -140,7 +125,6 @@ async function fetchAndDisplayUsers() {
 }
 
 // Event listener for DOMContentLoaded
-// This function is called when the DOM is fully loaded and parsed.
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed');
   const toggleButton = document.getElementById('dark-mode-toggle');
@@ -153,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Event listener for dark mode toggle button
-  // This function toggles the dark mode class on the body element.
   toggleButton.addEventListener('click', () => {
     console.log('Dark mode toggle button clicked');
     body.classList.toggle('dark-mode');
@@ -174,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
 
   // Event listener for form submission
-  // This function validates the form fields and prevents submission if invalid.
   form.addEventListener('submit', function(event) {
     // Prevent form submission
     event.preventDefault();
