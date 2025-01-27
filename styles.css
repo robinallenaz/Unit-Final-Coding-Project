@@ -1,23 +1,22 @@
+/* Define CSS variables for reuse */
+:root {
+    --dark-bg: #121212;
+    --dark-text: #ffffff;
+    --dark-toggle-bg: #333333;
+    --hover-bg: #007BFF;
+}
+
 body.dark-mode {
-    background-color: #121212;
+    background-color: var(--dark-bg);
 }
 
-body.dark-mode, body.dark-mode * {
-    color: #ffffff;
-}
-
-body.dark-mode th, body.dark-mode td {
-    color: #ffffff;
-}
-
-/* Ensure links are also styled correctly */
-body.dark-mode a {
-    color: #ffffff;
+body.dark-mode, body.dark-mode *, body.dark-mode th, body.dark-mode td, body.dark-mode a {
+    color: var(--dark-text);
 }
 
 body.dark-mode #dark-mode-toggle {
-    background-color: #333333;
-    color: #ffffff;
+    background-color: var(--dark-toggle-bg);
+    color: var(--dark-text);
     border: none;
 }
 
@@ -33,11 +32,9 @@ button {
 }
 
 button:hover {
-    background-color: #007BFF;
+    background-color: var(--hover-bg);
     transform: scale(1.05);
 }
-
-/* Add more styles as needed */
 
 /* Example modal fade-in animation */
 @keyframes fadeIn {
