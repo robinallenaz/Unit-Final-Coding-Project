@@ -1,8 +1,18 @@
 // Manages DOM manipulations.
 
+// Function to filter entities based on search input
+function filterEntities(entities, searchTerm) {
+  return entities.filter(entity =>
+    entity.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
+
 // Function to display entities with pagination
 export function displayEntities(entities, currentPage = 1, pageSize = 10) {
-  const totalPages = Math.ceil(entities.length / pageSize);
+  const searchInput = document.getElementById('search-entities');
+  const searchTerm = searchInput.value;
+  const filteredEntities = filterEntities(entities, searchTerm);
+  const totalPages = Math.ceil(filteredEntities.length / pageSize);
   const entityList = document.getElementById('entity-list');
   entityList.innerHTML = '';
   const table = document.createElement('table');
@@ -29,7 +39,7 @@ export function displayEntities(entities, currentPage = 1, pageSize = 10) {
   // Display entities
   const start = (currentPage - 1) * pageSize;
   const end = start + pageSize;
-  const currentEntities = entities.slice(start, end);
+  const currentEntities = filteredEntities.slice(start, end);
   currentEntities.forEach(entity => {
     const entityRow = document.createElement('tr');
     entityRow.innerHTML = `
